@@ -77,8 +77,8 @@ def main():
     if input_image_shape[0] > 1280 or input_image_shape[1] > 720:
         scales = min(720 / image.shape[0], 1280 / image.shape[1])
         image = cv2.resize(image, (0, 0), fx=scales, fy=scales)
-    cv2.imshow('image', image)
-    c = cv2.waitKey()
+    cv2.imwrite('image', image)
+    #c = cv2.waitKey()
 
 
 if __name__ == '__main__':
