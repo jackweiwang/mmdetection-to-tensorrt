@@ -32,15 +32,14 @@ def main():
         #min_scale = min(img_scale)
         #max_scale = max(img_scale)
         #print(min_scale)
-        opt_shape_param = [
-            [
-                [1, 3, 320,320 ],
-                [1, 3, 320, 320],
-                 [1, 3, 320, 320]
-            ]
+
+    opt_shape_param=[
+        [
+            [1,3,224,224],    # min tensor shape
+            [1,3,800,1312],  # shape used to do int8 calib
+            [1,3,1344,1344], # max tensor shape
         ]
-
-
+    ]
     trt_model = mmdet2trt(cfg_path,
                           args.checkpoint,
                           opt_shape_param=opt_shape_param,
