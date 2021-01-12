@@ -25,9 +25,25 @@ def main():
     args = parser.parse_args()
 
     cfg_path = args.config
+    opt_shape_param = None
+
+    if opt_shape_param is None:
+        #img_scale = cfg_path.test_pipeline[1]['img_scale']
+        #min_scale = min(img_scale)
+        #max_scale = max(img_scale)
+        #print(min_scale)
+        opt_shape_param = [
+            [
+                [1, 3, 320,320 ],
+                [1, 3, 320, 320],
+                 [1, 3, 320, 320]
+            ]
+        ]
+
 
     trt_model = mmdet2trt(cfg_path,
                           args.checkpoint,
+                          opt_shape_param=opt_shape_param,
                           fp16_mode=args.fp16,
                           device=args.device)
     torch.save(trt_model.state_dict(), args.save_path)
